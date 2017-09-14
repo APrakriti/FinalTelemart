@@ -66,7 +66,10 @@ public class MycustomAdapter extends RecyclerView.Adapter<MycustomAdapter.ViewHo
 
     @Override
     public int getItemCount() {
+
+
         return my_data.size();
+
     }
 
 

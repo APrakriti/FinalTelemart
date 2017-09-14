@@ -66,7 +66,7 @@ public class MainActivityFragment extends Fragment {
             HashMap<String, String> loginHashMap = new HashMap<>();
             JsonParser jsonParser = new JsonParser();
             JSONObject jsonObject = jsonParser.performPostCI("http://telemart.com.np/api/android/categories.php", loginHashMap);
-            Log.e("monkey", "sam");
+           // Log.e("monkey", "sam");
             String request = "";
 
             try {
@@ -75,18 +75,22 @@ public class MainActivityFragment extends Fragment {
 
                 } else if (jsonObject.getString("status").equals("success")) {
                     JSONArray jsonArray=jsonObject.getJSONArray("data");
+                    System.out.println(jsonArray.length());
 
 
                     for (int i = 0; i < jsonArray.length(); i++) {
 
                         JSONObject object = jsonArray.getJSONObject(i);
+                        Log.e("monkey", "prakriti");
 
                         Integer id = object.getInt("id");
                         String name = object.getString("name");
                         String slug = object.getString("slug");
                         Integer parent = object.getInt("parent");
+                        Log.e("monkey", "prak");
                         String description = object.getString("description");
                         String display = object.getString("display");
+                        Log.e("monkey", "sonika");
 
 
                         // Image node is JSON Object
@@ -99,23 +103,27 @@ public class MainActivityFragment extends Fragment {
                         String src =image.getString("src");
                         String title =image.getString("title");
                         String alt =image.getString("alt");
+                        Log.e("monkey", "pratik");
 
 
                         //same as above
                         Integer menu_order = object.getInt("menu_order");
                         Integer count = object.getInt("count");
+                        Log.e("monkey", "suman");
 
                         JSONObject _links = object.getJSONObject("_links");
+                        Log.e("monkey", "prakash");
 
                         JSONArray self = _links.getJSONArray("self");
+                        Log.e("monkey", "swikriti");
 
                         String self_href = self.getJSONObject(i).getString("href");
+                        Log.e("monkey", "kritik");
 
                         JSONArray collection = _links.getJSONArray("collection");
+                        Log.e("monkey", "binamra");
 
                         String collection_href = collection.getJSONObject(i).getString("href");
-
-
                         //String character = FoodArray.getJSONObject(i).getString("char");
                         //   JSONArray Self = object.getJSONArray("self");
                         //  for (int i = 0; i < Self.length(); i++) {
@@ -123,10 +131,9 @@ public class MainActivityFragment extends Fragment {
                         //     String character = Self.getJSONObject(i).getString("href");
 
                         //   JSONObject status = response.getJSONObject("status");
-
-
                         MyData myData= new MyData(id, count, menu_order, parent,image_id,name, slug, description, display,date_created, date_created_gmt, date_modified,date_modified_gmt, src, title, alt, self_href, collection_href);
-
+                       // Log.e("monkey", "prakriti");
+                        Log.e("prakash", data_list.size() + "" );
                         data_list.add(myData);
                         flag = 2;
                     }
@@ -158,6 +165,7 @@ public class MainActivityFragment extends Fragment {
                 GridLayoutManager mGrid = new GridLayoutManager(getContext(),1);
                 mrecyclerView.setLayoutManager(mGrid);
                 mrecyclerView.setHasFixedSize(true);
+                Log.e("monkey" , String.valueOf(data_list.size()));
                 MycustomAdapter mAdapter = new MycustomAdapter(getContext(), data_list );
                 mrecyclerView.setAdapter(mAdapter);
 
