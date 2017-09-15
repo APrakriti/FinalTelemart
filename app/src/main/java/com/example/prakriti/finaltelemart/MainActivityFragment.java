@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.prakriti.finaltelemart.Adapter.MycustomAdapter;
 import com.example.prakriti.finaltelemart.Pojo.MyData;
+import com.synnapps.carouselview.CarouselView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,8 +49,10 @@ public class MainActivityFragment extends Fragment {
     class ProductAsyncTask extends AsyncTask<String, String, String> {
         ProgressDialog mprogressDialog;
         RecyclerView mrecyclerView;
+
         int flag;
         List<MyData> data_list = new ArrayList<>();
+
 
         @Override
         protected void onPreExecute() {
@@ -117,13 +120,13 @@ public class MainActivityFragment extends Fragment {
                         JSONArray self = _links.getJSONArray("self");
                         Log.e("monkey", "swikriti");
 
-                        String self_href = self.getJSONObject(i).getString("href");
+                        String self_href = self.getJSONObject(0).getString("href");
                         Log.e("monkey", "kritik");
 
                         JSONArray collection = _links.getJSONArray("collection");
                         Log.e("monkey", "binamra");
 
-                        String collection_href = collection.getJSONObject(i).getString("href");
+                        String collection_href = collection.getJSONObject(0).getString("href");
                         //String character = FoodArray.getJSONObject(i).getString("char");
                         //   JSONArray Self = object.getJSONArray("self");
                         //  for (int i = 0; i < Self.length(); i++) {
@@ -162,9 +165,10 @@ public class MainActivityFragment extends Fragment {
                 Toast.makeText(getContext(), "Success", Toast.LENGTH_SHORT).show();
                 mrecyclerView = (RecyclerView) getView().findViewById(R.id.recycler_view);
 
-                GridLayoutManager mGrid = new GridLayoutManager(getContext(),1);
+                GridLayoutManager mGrid = new GridLayoutManager(getContext(),2);
                 mrecyclerView.setLayoutManager(mGrid);
                 mrecyclerView.setHasFixedSize(true);
+                mrecyclerView.setNestedScrollingEnabled(false);
                 Log.e("monkey" , String.valueOf(data_list.size()));
                 MycustomAdapter mAdapter = new MycustomAdapter(getContext(), data_list );
                 mrecyclerView.setAdapter(mAdapter);

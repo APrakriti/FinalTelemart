@@ -49,18 +49,8 @@ public class MycustomAdapter extends RecyclerView.Adapter<MycustomAdapter.ViewHo
         //  int imageRes = getResourceId(context, productObject.getImage(), "drawable", context.getPackageName());
         // holder.imageview.setImageResource(imageRes);
         holder.name1.setText(productObject.getName());
-        holder.description1.setText(productObject.getDescription());
-     /*   Picasso.with(context).load(productObject.getImage()).into(holder.imageview1);
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                ProductObject one = productList.get(position);
-                Intent intent = new Intent(context, Food_Activity.class);
-         //       intent.putExtra("yellow", one);
-                context.startActivity(intent);
-                Log.e("donkey", "monkey");
-            }
-        });*/
+      //  holder.description1.setText(productObject.getDescription());
+       Picasso.with(context).load(productObject.getSrc()).into(holder.imageview1);
 
     }
 
@@ -75,15 +65,15 @@ public class MycustomAdapter extends RecyclerView.Adapter<MycustomAdapter.ViewHo
 
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        TextView name1, description1;
+        TextView name1;
         ImageView imageview1;
 
 
         public ViewHolder(View itemV) {
             super(itemV);
             name1 = (TextView) itemV.findViewById(R.id.name);
-            description1 = (TextView) itemV.findViewById(R.id.description);
-          //  imageview1 = (ImageView)itemV.findViewById(R.id.imageview);
+       //     description1 = (TextView) itemV.findViewById(R.id.description);
+            imageview1 = (ImageView)itemV.findViewById(R.id.imageview);
 
         }
     }}

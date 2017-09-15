@@ -10,8 +10,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import com.synnapps.carouselview.CarouselView;
+import com.synnapps.carouselview.ImageListener;
 
 public class MainActivity extends AppCompatActivity  implements NavigationView.OnNavigationItemSelectedListener{
+    CarouselView carouselview;
+
+    int[] images = {R.drawable.beauty, R.drawable.gym, R.drawable.herbal, R.drawable.kitchen};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +26,9 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        carouselview = (CarouselView) findViewById(R.id.carouselview);
+        carouselview.setPageCount(images.length);
+        carouselview.setImageListener(imagelistener);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -31,6 +41,12 @@ public class MainActivity extends AppCompatActivity  implements NavigationView.O
         navigationView.setNavigationItemSelectedListener(this);
 
     }
+    ImageListener imagelistener = new ImageListener() {
+        @Override
+        public void setImageForPosition(int position, ImageView imageView) {
+            imageView.setImageResource(images[position]);
+        }
+    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
